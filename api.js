@@ -6,8 +6,7 @@ function getAllPosts(subreddits) {
 	var hnPromise = HNews.getAllHnPosts();
 	var promises = [];
 	var index;
-	for (index in subreddits)
-	{
+	for (index in subreddits) {
 		promises.push(Reddit.getAllRedditPosts(subreddits[index]));
 	} 
 	promises.push(hnPromise);
