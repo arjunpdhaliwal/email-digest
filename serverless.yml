@@ -1,0 +1,13 @@
+service: aws-email-digest 
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  memorySize: 128
+
+functions:
+  send:
+    handler: handler.send
+    timeout: 15
+    events:
+      - schedule: cron(0 17 * * ? *)
