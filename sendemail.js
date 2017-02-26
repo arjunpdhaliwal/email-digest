@@ -25,8 +25,7 @@ function sendEmail() {
 
 		var hours;
 		var commentsString = '';
-		for (index in redditData)
-		{
+		for (index in redditData) {
 			if(redditData[index].commentsnum == 1)
 				commentsString = '1 comment';
 			else
@@ -34,8 +33,7 @@ function sendEmail() {
 			hours = Math.round(Math.abs(Date.now() - redditData[index].datetime * 1000) / 36e5);
 			allPostBody += HTMLBody.getRedditString(redditData[index].points, redditData[index].title, redditData[index].url, '/u/' + redditData[index].author, 'http://www.reddit.com' + '/u/' + redditData[index].author, commentsString, redditData[index].commentsurl, 'about ' + hours + ' hours ago', redditData[index].subname, 'http://www.reddit.com/' + redditData[index].subname)
 		}
-		for (index in hnData)
-		{
+		for (index in hnData) {
 			if(hnData[index].commentsnum == 1)
 				commentsString = '1 discussion';
 			else
