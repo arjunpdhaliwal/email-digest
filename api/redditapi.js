@@ -1,6 +1,6 @@
 'use strict';
 const Snoocore = require('snoocore');
-const Auth = require('./auth.js')
+const Auth = require('../data/auth.js')
 
 var reddit = new Snoocore({
   userAgent: 'js-digest',

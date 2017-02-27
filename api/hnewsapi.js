@@ -1,5 +1,4 @@
 'use strict'
-const HNews = require('node-hacker-news');
 const NodeRestClient = require('node-rest-client').Client;
 
 var restClient = new NodeRestClient();
@@ -24,24 +23,22 @@ function getAllHnPosts(hnPromise) {
 		for (index in ids)
 		{
 			promises.push(new Promise(function(resolve, reject) {
-				HNews.item(ids[index], function(err, item) {
-					if (err) throw err;
+				restClient.get('https://hacker-news.firebaseio.com/v0/item/' + ids[index] + '.json', function(data, response) {
 					var currObj = [];
-					//console.log(item);
 				  	currObj.source = 'hnews';
-			  		currObj.title = item.title;
-			  		if (item.url)
-			  			currObj.url = item.url;
+			  		currObj.title = data.title;
+			  		if (data.url)
+			  			currObj.url = data.url;
 			  		else
 			  			currObj.url = "";
-				  	currObj.author = item.by;
-				  	currObj.commentsurl = 'https://news.ycombinator.com/item?id=' + item.id;
-				  	if(item.kids)
-				  		currObj.commentsnum = item.kids.length;
+				  	currObj.author = data.by;
+				  	currObj.commentsurl = 'https://news.ycombinator.com/item?id=' + data.id;
+				  	if(data.kids)
+				  		currObj.commentsnum = data.kids.length;
 				  	else
 				  		currObj.commentsnum = 0;
-				  	currObj.points = item.score;
-				  	currObj.datetime = item.time;
+				  	currObj.points = data.score;
+				  	currObj.datetime = data.time;
 				  	resolve(currObj);
 				});
 			}));
