@@ -1,0 +1,4 @@
+.serverless/
+data/auth.js
+data/data.js
+node_modules/
