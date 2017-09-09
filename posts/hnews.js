@@ -12,7 +12,7 @@ function getAllHnIDs() {
 }
 
 function getAllHnPosts(getIDs) {
-    return getIDs().then((ids) => {
+    return getAllHnIDs().then((ids) => {
         let promises = [];
         let index;
         for (index in ids) {
@@ -45,10 +45,6 @@ function getAllHnPosts(getIDs) {
     });
 }
 
-function getAllPosts(hnPromise) {
-    return getAllHnPosts(getAllHnIDs);
-}
-
 module.exports = {
-    getAllHnPosts : getAllPosts
+    getAllHnPosts : getAllHnPosts
 };
