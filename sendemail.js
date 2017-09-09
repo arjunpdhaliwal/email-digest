@@ -5,7 +5,7 @@ const Posts = require('./posts');
 const Auth = require('./data/auth.js');
 const Data = require('./data/data.js');
 
-var emailClient = new Postmark(Auth.postmarkAuth);
+var emailClient = new Postmark.Client(Auth.postmarkAuth);
 
 function sendEmail() {
     Posts.getPosts(Data.subreddits).then(data => {
@@ -73,7 +73,7 @@ function sendEmail() {
             "From": Data.fromEmail, 
             "To": Data.toEmail, 
             "Subject": "Daily Digest",
-            "Template": allPostBody
+            "HtmlBody": allPostBody
         });
     });
 }
